@@ -2,24 +2,23 @@ import {useState} from "react";
 import {motion, AnimatePresence } from "framer-motion"
 import Footer from "./Components/Footer.jsx";
 import Card from "./Components/Card.jsx";
-import './App.scss'
 import AddNew from "./Components/AddNew.jsx";
-
+import './App.scss'
 
 function App() {
     const [tasks, setTasks] = useState(() => {
-    const localStorageValue = localStorage.getItem('stateKey');
-    if (localStorageValue) {
-      return JSON.parse(localStorageValue);
-    }
-    return [{ id: 0, text: "Press + to create a task", checked: false, color: 1}];
+        const localStorageValue = localStorage.getItem('stateKey');
+        if (localStorageValue) {
+            return JSON.parse(localStorageValue);
+        }
+        return [{ id: 0, text: "Press + to create a task", checked: false, color: 1}];
     });
 
     function Item(id, text, checked, color) {
-      this.id = id;
-      this.text = text;
-      this.checked = checked;
-      this.color = color;
+        this.id = id;
+        this.text = text;
+        this.checked = checked;
+        this.color = color;
     }
 
     const addTask = (text, color) => {
@@ -31,11 +30,13 @@ function App() {
     }
 
     const deleteTask = (id) => {
-        setTasks((prevTasks) => {
-            const filteredTasks = prevTasks.filter((task) => task.id !== id);
-            localStorage.setItem('stateKey', JSON.stringify(filteredTasks));
-            return filteredTasks;
-        });
+        if (confirm("Are you sure you want to delete this task?") === true) {
+            setTasks((prevTasks) => {
+                const filteredTasks = prevTasks.filter((task) => task.id !== id);
+                localStorage.setItem('stateKey', JSON.stringify(filteredTasks));
+                return filteredTasks;
+            });
+        }
     };
 
     const toggleChecked = (item) => {
@@ -52,7 +53,7 @@ function App() {
 
     return (
         <>
-            <motion.h2 className="logo">Tasks</motion.h2>
+            <a href="/"><motion.h2 className="logo">Tasks</motion.h2></a>
             <AddNew addTask={addTask}/>
             <div className="container">
                 <div className="hero">
