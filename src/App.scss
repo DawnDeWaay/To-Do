@@ -152,6 +152,7 @@ html {
     padding: 13px;
     width: 24px;
     aspect-ratio: 1;
+    -webkit-user-select: none;
     user-select: none;
     position: absolute;
     right: 0;
@@ -171,7 +172,8 @@ html {
   width: 100vw;
   color: #101010;
   margin-top: 40px;
-  h2, a {
+  h2,
+  a {
     font-size: 20px;
     font-family: Aero;
     text-decoration: none;
@@ -192,16 +194,16 @@ html {
   height: 100px;
 }
 
-@media (max-width: 768px) {
-  .hero {
-    margin-top: 10vh;
-  }
-}
-
 .divider {
   max-width: 500px;
   width: 90vw;
   border-bottom: 3px solid #101010;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    margin-top: 10vh;
+  }
 }
 
 @font-face {
