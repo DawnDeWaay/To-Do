@@ -55,9 +55,7 @@ function App() {
 
   return (
     <>
-      <a href="/">
         <motion.h2 className="logo">Tasks</motion.h2>
-      </a>
       <AddNew addTask={addTask} />
       <div className="container">
         <div className="hero">
